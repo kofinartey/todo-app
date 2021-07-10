@@ -1,10 +1,13 @@
 import "./App.css";
 import TodoApp from "./components/TodoApp";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 function App() {
   return (
     <div className="App">
-      <TodoApp />
+      <ThemeProvider>
+        <TodoApp />
+      </ThemeProvider>
     </div>
   );
 }
