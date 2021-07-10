@@ -4,10 +4,21 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import styles from "../styles/FilterBarStyles";
 import { withStyles } from "@material-ui/styles";
 
-function FilterBar({ classes }) {
+function FilterBar(props) {
+  const { classes, filterCompleted, filterActive, filterAll } = props;
   const { todos, clearCompleted } = useContext(TodoContext);
   const { isDark } = useContext(ThemeContext);
   const numUncompletedTodos = todos.filter((todo) => !todo.completed).length;
+
+  const handleCompleted = () => {
+    filterCompleted();
+  };
+  const handleActive = () => {
+    filterActive();
+  };
+  const handleAll = () => {
+    filterAll();
+  };
 
   return (
     <div
@@ -17,9 +28,26 @@ function FilterBar({ classes }) {
       {todos.length > 0 && (
         <div className={classes.Filters}>
           <p>{`${numUncompletedTodos} items left`}</p>
-          <p>All</p>
-          <p>Active</p>
-          <p>Completed</p>
+
+          <label htmlFor="all">All</label>
+          <input type="radio" id="all" name="filter" onClick={handleAll} />
+
+          <label htmlFor="active">Active</label>
+          <input
+            type="radio"
+            id="active"
+            name="filter"
+            onClick={handleActive}
+          />
+
+          <label htmlFor="Completed">Completed</label>
+          <input
+            type="radio"
+            id="Completed"
+            name="filter"
+            onChange={handleCompleted}
+          />
+
           <p onClick={() => clearCompleted()}>Clear Completed </p>
         </div>
       )}

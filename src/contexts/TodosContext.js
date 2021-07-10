@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export const TodoContext = createContext();
@@ -8,6 +8,18 @@ export function TodoProvider(props) {
     { id: 1, task: "call mama", completed: false, active: false },
     { id: 2, task: "call daniel", completed: false, active: false },
   ]);
+
+  //fetch todos from local storage
+  useEffect(() => {
+    const data = localStorage.getItem("todos");
+    if (data) {
+      setTodos(JSON.parse(data));
+    }
+  }, []);
+  //save todos in local storage
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (newTodo) => {
     setTodos((todos) => [

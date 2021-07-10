@@ -12,7 +12,7 @@ const styles = {
   },
 
   Filters: {
-    width: "1000%",
+    width: "100%",
     display: "flex",
     justifyContent: "space-between",
     padding: "1rem",

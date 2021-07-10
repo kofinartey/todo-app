@@ -7,7 +7,6 @@ import { Divider } from "@material-ui/core";
 
 function Todo({ todo, classes }) {
   const { toggleCompletion, removeTodo } = useContext(TodoContext);
-  //   console.log(toggleCompletion);
 
   const handleCheck = (e) => {
     toggleCompletion(todo.id);
@@ -20,7 +19,11 @@ function Todo({ todo, classes }) {
   return (
     <div className={classes.Todo}>
       <div className={classes.Todo__content}>
-        <input type="checkbox" onChange={handleCheck} />
+        <input
+          type="checkbox"
+          onChange={handleCheck}
+          checked={todo.completed}
+        />
         <p
           className={classes.task}
           style={{ textDecoration: todo.completed && "line-through" }}

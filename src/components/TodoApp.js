@@ -3,7 +3,6 @@ import { TodoProvider } from "../contexts/TodosContext";
 import { ThemeContext } from "../contexts/ThemeContext";
 import TodoList from "./TodoList";
 import NewTodo from "./NewTodo";
-import FilterBar from "./FilterBar";
 import sun from "../images/icon-sun.svg";
 import moon from "../images/icon-moon.svg";
 import styles from "../styles/TodoAppStyles";
@@ -36,7 +35,6 @@ function TodoApp(props) {
         <TodoProvider>
           <NewTodo />
           <TodoList />
-          <FilterBar />
         </TodoProvider>
       </div>
     </div>
