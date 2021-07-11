@@ -5,7 +5,7 @@ const styles = {
     zIndex: "1",
   },
   input: {
-    fontFamily: "Josefin Sans",
+    fontFamily: "Josefin Sans, sans-serif",
     fontSize: "1.2rem",
     width: "100%",
     padding: "1.5rem",

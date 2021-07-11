@@ -15,7 +15,9 @@ function NewTodo(props) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTodo(newTodo);
+    if (newTodo !== "") {
+      addTodo(newTodo);
+    }
     setNewTodo("");
   };
 

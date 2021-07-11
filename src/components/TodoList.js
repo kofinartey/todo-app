@@ -29,29 +29,36 @@ function TodoList(props) {
   const filterAll = () => {
     setFilterStatus({ completed: false, active: false });
   };
-  //if completed,
-  //if active,
-  //else render all
-
-  //filter completed
-  //filter active
 
   //Separate completed and active todos and store them in state
-  const selectCompleted = () => {
-    const done = todos.filter((todo) => todo.completed);
-    setCompleted(done);
-    // console.log(done);
-  };
-  const selectActive = () => {
-    const undone = todos.filter((todo) => !todo.completed);
-    setActive(undone);
-    // console.log(undone);
-  };
+  // const selectCompleted = () => {
+  //   const done = todos.filter((todo) => todo.completed);
+  //   setCompleted(done);
+  // };
+  // const selectActive = () => {
+  //   const undone = todos.filter((todo) => !todo.completed);
+  //   setActive(undone);
+  // };
 
   useEffect(() => {
+    const selectCompleted = () => {
+      const done = todos.filter((todo) => todo.completed);
+      setCompleted(done);
+    };
     selectCompleted();
+  }, [todos]);
+
+  useEffect(() => {
+    const selectActive = () => {
+      const undone = todos.filter((todo) => !todo.completed);
+      setActive(undone);
+    };
     selectActive();
   }, [todos]);
+  // useEffect(() => {
+  //   selectCompleted();
+  //   selectActive();
+  // }, [todos]);
 
   const renderCompleted = () =>
     completed.map((todo) => <Todo todo={todo} key={todo.id} />);
