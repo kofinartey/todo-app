@@ -5,8 +5,8 @@ export const TodoContext = createContext();
 
 export function TodoProvider(props) {
   const [todos, setTodos] = useState([
-    { id: 1, task: "call mama", completed: false, active: false },
-    { id: 2, task: "call daniel", completed: false, active: false },
+    { id: 1, task: "Go shopping", completed: false, active: false },
+    { id: 2, task: "Study a new topic", completed: false, active: false },
   ]);
 
   //fetch todos from local storage
