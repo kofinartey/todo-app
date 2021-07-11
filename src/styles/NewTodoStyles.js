@@ -1,14 +1,24 @@
 const styles = {
   NewTodo: {
     width: "100%",
-    marginBottom: " 1rem",
+    margin: " 2rem 0",
     zIndex: "1",
   },
   input: {
+    fontFamily: "Josefin Sans",
+    fontSize: "1.2rem",
     width: "100%",
-    padding: "1rem",
+    padding: "1.5rem",
     border: "none",
     borderRadius: "5px",
+    "&::placeholder": {
+      // color: "#ccc",
+      fontWeight: "200",
+    },
+    "&:focus": {
+      outline: "none",
+      border: "2px solid #37394E",
+    },
   },
 };
 

@@ -12,10 +12,12 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    transition: "all .3s ease-in-out",
   },
   TodoApp__header: {
     width: "100%",
-    height: "13.75rem",
+    minHeight: "13.75rem",
+    height: "37%",
     backgroundImage: `url(${mobileLight})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -39,11 +41,11 @@ const styles = {
   },
   heading: {
     color: "white",
-    fontSize: "1.5rem",
+    fontSize: "2rem",
     letterSpacing: ".5rem",
     "& + img": {
-      width: "1.5rem",
-      height: "1.5rem",
+      width: "2rem",
+      height: "2rem",
     },
   },
 

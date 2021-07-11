@@ -6,7 +6,6 @@ import NewTodo from "./NewTodo";
 import sun from "../images/icon-sun.svg";
 import moon from "../images/icon-moon.svg";
 import styles from "../styles/TodoAppStyles";
-import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 
 function TodoApp(props) {

@@ -61,21 +61,24 @@ function TodoList(props) {
     todos.map((todo) => <Todo todo={todo} key={todo.id} />);
 
   return (
-    <div
-      className={classes.TodoList}
-      style={{ backgroundColor: isDark ? "#25273C" : "#FAFAFA" }}
-    >
-      {filterStatus.active
-        ? renderActive()
-        : filterStatus.completed
-        ? renderCompleted()
-        : renderAll()}
+    <div className={classes.TodoList}>
+      <div
+        className={classes.list}
+        style={{ backgroundColor: isDark ? "#25273C" : "#FAFAFA" }}
+      >
+        {filterStatus.active
+          ? renderActive()
+          : filterStatus.completed
+          ? renderCompleted()
+          : renderAll()}
+      </div>
 
       {todos.length > 0 && (
         <FilterBar
           filterCompleted={filterCompleted}
           filterActive={filterActive}
           filterAll={filterAll}
+          filterStatus={filterStatus}
         />
       )}
     </div>

@@ -5,7 +5,8 @@ import styles from "../styles/FilterBarStyles";
 import { withStyles } from "@material-ui/styles";
 
 function FilterBar(props) {
-  const { classes, filterCompleted, filterActive, filterAll } = props;
+  const { classes, filterCompleted, filterActive, filterAll, filterStatus } =
+    props;
   const { todos, clearCompleted } = useContext(TodoContext);
   const { isDark } = useContext(ThemeContext);
   const numUncompletedTodos = todos.filter((todo) => !todo.completed).length;
@@ -21,36 +22,80 @@ function FilterBar(props) {
   };
 
   return (
+    // filterbar contains three main divisions
+    //    *display todos left
+    //    *Section for filters
+    //    *clear completed
     <div
       className={classes.FilterBar}
       style={{ backgroundColor: isDark ? "#25273C" : "#FAFAFA" }}
     >
-      {todos.length > 0 && (
-        <div className={classes.Filters}>
-          <p>{`${numUncompletedTodos} items left`}</p>
+      {/*   display todos left */}
+      <p
+        className={classes.todos__left}
+      >{`${numUncompletedTodos} items left`}</p>
 
-          <label htmlFor="all">All</label>
-          <input type="radio" id="all" name="filter" onClick={handleAll} />
+      {/*   Section for filters */}
+      <div className={classes.Filters__wrapper}>
+        <label
+          htmlFor="all"
+          className={classes.filter}
+          style={{
+            color:
+              !filterStatus.completed &&
+              !filterStatus.active &&
+              "hsl(220, 98%, 61%)",
+          }}
+        >
+          All
+        </label>
+        <input
+          className={classes.input}
+          type="radio"
+          id="all"
+          name="filter"
+          onClick={handleAll}
+        />
 
-          <label htmlFor="active">Active</label>
-          <input
-            type="radio"
-            id="active"
-            name="filter"
-            onClick={handleActive}
-          />
+        <label
+          htmlFor="active"
+          className={classes.filter}
+          style={{
+            color: filterStatus.active && "hsl(220, 98%, 61%)",
+          }}
+        >
+          Active
+        </label>
+        <input
+          className={classes.input}
+          type="radio"
+          id="active"
+          name="filter"
+          onClick={handleActive}
+        />
 
-          <label htmlFor="Completed">Completed</label>
-          <input
-            type="radio"
-            id="Completed"
-            name="filter"
-            onChange={handleCompleted}
-          />
+        <label
+          htmlFor="Completed"
+          className={classes.filter}
+          style={{
+            color: filterStatus.completed && "hsl(220, 98%, 61%)",
+          }}
+        >
+          Completed
+        </label>
+        <input
+          className={classes.input}
+          type="radio"
+          id="Completed"
+          name="filter"
+          onChange={handleCompleted}
+        />
+      </div>
 
-          <p onClick={() => clearCompleted()}>Clear Completed </p>
-        </div>
-      )}
+      {/* //    *clear completed */}
+      <p className={classes.clear} onClick={() => clearCompleted()}>
+        Clear Completed{" "}
+      </p>
     </div>
   );
 }
