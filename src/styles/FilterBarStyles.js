@@ -21,6 +21,7 @@ const styles = {
     padding: "1rem",
   },
   filter: {
+    marginRight: "1rem",
     "&:hover": {
       color: "hsl(280, 87%, 75%)",
     },
