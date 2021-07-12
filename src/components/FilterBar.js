@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { TodoContext } from "../contexts/TodosContext";
 import { ThemeContext } from "../contexts/ThemeContext";
 import styles from "../styles/FilterBarStyles";
