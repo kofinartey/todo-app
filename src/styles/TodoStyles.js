@@ -43,6 +43,7 @@ const styles = {
       "linear-gradient(to right, hsl(192, 100%, 67%) ,hsl(280, 87%, 65%))",
   },
   task: {
+    fontSize: ".8rem",
     padding: "1rem",
     textAlign: "left",
     display: "flex",
@@ -56,6 +57,12 @@ const styles = {
       opacity: "1",
       transform: "scale(1.2)",
       transition: "transform .3s ease-in-out",
+    },
+  },
+
+  "@media(min-width: 48rem)": {
+    task: {
+      fontSize: "1rem",
     },
   },
 };

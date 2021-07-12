@@ -48,7 +48,11 @@ const styles = {
       height: "2rem",
     },
   },
-
+  "@media(min-width: 48rem)": {
+    TodoApp__wrapper: {
+      width: "80%",
+    },
+  },
   "@media(min-width: 64rem)": {
     TodoApp__header: {
       backgroundImage: `url(${desktopLight})`,

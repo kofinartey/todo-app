@@ -9,7 +9,8 @@ import { withStyles } from "@material-ui/styles";
 function TodoList(props) {
   const { classes } = props;
   const { isDark } = useContext(ThemeContext);
-  const { todos } = useContext(TodoContext);
+  const { todos, clearCompleted } = useContext(TodoContext);
+  const numUncompletedTodos = todos.filter((todo) => !todo.completed).length;
 
   //states to hold completed and active todos
   const [completed, setCompleted] = useState([]);
@@ -31,15 +32,6 @@ function TodoList(props) {
   };
 
   //Separate completed and active todos and store them in state
-  // const selectCompleted = () => {
-  //   const done = todos.filter((todo) => todo.completed);
-  //   setCompleted(done);
-  // };
-  // const selectActive = () => {
-  //   const undone = todos.filter((todo) => !todo.completed);
-  //   setActive(undone);
-  // };
-
   useEffect(() => {
     const selectCompleted = () => {
       const done = todos.filter((todo) => todo.completed);
@@ -55,11 +47,8 @@ function TodoList(props) {
     };
     selectActive();
   }, [todos]);
-  // useEffect(() => {
-  //   selectCompleted();
-  //   selectActive();
-  // }, [todos]);
 
+  //functions for conditional rendering of list
   const renderCompleted = () =>
     completed.map((todo) => <Todo todo={todo} key={todo.id} />);
   const renderActive = () =>
@@ -67,12 +56,17 @@ function TodoList(props) {
   const renderAll = () =>
     todos.map((todo) => <Todo todo={todo} key={todo.id} />);
 
+  //store value for conditional color change
+  const conditionalBackground = {
+    backgroundColor: isDark ? "#25273C" : "white",
+    color: "#8C8C8C",
+  };
+  // const conditionalText = { backgroundColor: };
+
   return (
     <div className={classes.TodoList}>
-      <div
-        className={classes.list}
-        style={{ backgroundColor: isDark ? "#25273C" : "#FAFAFA" }}
-      >
+      {/* list */}
+      <div className={classes.list} style={conditionalBackground}>
         {filterStatus.active
           ? renderActive()
           : filterStatus.completed
@@ -80,6 +74,19 @@ function TodoList(props) {
           : renderAll()}
       </div>
 
+      {/* statusbar */}
+      <div className={classes.statusBar} style={conditionalBackground}>
+        <p>{`${numUncompletedTodos} items left`}</p>
+        <p
+          onClick={() => {
+            clearCompleted();
+          }}
+        >
+          Clear Completed
+        </p>
+      </div>
+
+      {/* filterbar */}
       {todos.length > 0 && (
         <FilterBar
           filterCompleted={filterCompleted}

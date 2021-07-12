@@ -5,7 +5,7 @@ const styles = {
     backgroundColor: "white",
     color: "hsl(236, 9%, 61%)",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     marginTop: "1rem",
     padding: " .5rem 2rem",
@@ -15,7 +15,7 @@ const styles = {
   },
 
   Filters__wrapper: {
-    width: "40%",
+    width: "60%",
     display: "flex",
     justifyContent: "space-between",
     padding: "1rem",
@@ -30,15 +30,32 @@ const styles = {
   },
 
   todos__left: {
+    display: "none",
     fontSize: ".8rem",
     color: "#ccc",
   },
   clear: {
     fontSize: ".8rem",
     color: "#ccc",
+    display: "none",
     "&:hover": {
       color: "hsl(280, 87%, 75%)",
       cursor: "pointer",
+    },
+  },
+
+  "@media(min-width: 768px)": {
+    FilterBar: {
+      justifyContent: "space-between",
+    },
+    Filters__wrapper: {
+      width: "40%",
+    },
+    todos__left: {
+      display: "block",
+    },
+    clear: {
+      display: "block",
     },
   },
 };

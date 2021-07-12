@@ -8,7 +8,7 @@ const styles = {
     fontFamily: "Josefin Sans, sans-serif",
     fontSize: "1.2rem",
     width: "100%",
-    padding: "1.5rem",
+    padding: "1rem 1.5rem",
     border: "none",
     borderRadius: "5px",
     "&::placeholder": {

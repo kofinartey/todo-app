@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { TodoContext } from "../contexts/TodosContext";
 import { ThemeContext } from "../contexts/ThemeContext";
 import styles from "../styles/FilterBarStyles";
@@ -28,7 +28,7 @@ function FilterBar(props) {
     //    *clear completed
     <div
       className={classes.FilterBar}
-      style={{ backgroundColor: isDark ? "#25273C" : "#FAFAFA" }}
+      style={{ backgroundColor: isDark ? "#25273C" : "white" }}
     >
       {/*   display todos left */}
       <p
