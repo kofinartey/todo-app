@@ -8,18 +8,18 @@ import { Divider } from "@material-ui/core";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 function Todo({ todo, classes }) {
-  const { toggleCompletion, removeTodo } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
   const { isDark } = useContext(ThemeContext);
 
   const handleCheck = (e) => {
-    toggleCompletion(todo.id);
+    dispatch({ type: "TOGGLE_COMPLETION", id: todo.id });
   };
 
   const handleDelete = (e) => {
     let toDelete = e.target.parentElement.parentElement;
     toDelete.style.opacity = "0";
     setTimeout(() => {
-      removeTodo(todo.id);
+      dispatch({ type: "REMOVE", id: todo.id });
     }, 500);
   };
 

@@ -9,7 +9,7 @@ import { withStyles } from "@material-ui/styles";
 function TodoList(props) {
   const { classes } = props;
   const { isDark } = useContext(ThemeContext);
-  const { todos, clearCompleted } = useContext(TodoContext);
+  const { todos, dispatch } = useContext(TodoContext);
   const numUncompletedTodos = todos.filter((todo) => !todo.completed).length;
 
   //states to hold completed and active todos
@@ -75,16 +75,18 @@ function TodoList(props) {
       </div>
 
       {/* statusbar */}
-      <div className={classes.statusBar} style={conditionalBackground}>
-        <p>{`${numUncompletedTodos} items left`}</p>
-        <p
-          onClick={() => {
-            clearCompleted();
-          }}
-        >
-          Clear Completed
-        </p>
-      </div>
+      {todos.length > 0 && (
+        <div className={classes.statusBar} style={conditionalBackground}>
+          <p>{`${numUncompletedTodos} items left`}</p>
+          <p
+            onClick={() => {
+              dispatch({ type: "CLEAR_COMPLETED" });
+            }}
+          >
+            Clear Completed
+          </p>
+        </div>
+      )}
 
       {/* filterbar */}
       {todos.length > 0 && (

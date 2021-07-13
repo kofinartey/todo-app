@@ -7,7 +7,7 @@ const styles = {
   list: {
     backgroundColor: "white",
     borderRadius: "5px",
-    height: "20rem",
+    maxHeight: "20rem",
     overflowY: "scroll",
     position: "relative",
     // boxShadow: "0px 10px 20px 7px rgba(0,0,0,0.05)",
@@ -40,7 +40,7 @@ const styles = {
 
   "@media(min-width: 48rem)": {
     list: {
-      height: "25rem",
+      maxHeight: "25rem",
     },
     statusBar: {
       display: "none",

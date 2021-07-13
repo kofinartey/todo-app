@@ -7,7 +7,7 @@ import { withStyles } from "@material-ui/styles";
 function NewTodo(props) {
   const { classes } = props;
   const [newTodo, setNewTodo] = useState("");
-  const { addTodo } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
   const { isDark } = useContext(ThemeContext);
 
   const handleChange = (e) => {
@@ -16,7 +16,7 @@ function NewTodo(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newTodo !== "") {
-      addTodo(newTodo);
+      dispatch({ type: "ADD", task: newTodo });
     }
     setNewTodo("");
   };
