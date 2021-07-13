@@ -7,7 +7,7 @@ import { withStyles } from "@material-ui/styles";
 function FilterBar(props) {
   const { classes, filterCompleted, filterActive, filterAll, filterStatus } =
     props;
-  const { todos, clearCompleted } = useContext(TodoContext);
+  const { todos, dispatch } = useContext(TodoContext);
   const { isDark } = useContext(ThemeContext);
   const numUncompletedTodos = todos.filter((todo) => !todo.completed).length;
 
@@ -93,7 +93,10 @@ function FilterBar(props) {
       </div>
 
       {/* //    *clear completed */}
-      <p className={classes.clear} onClick={() => clearCompleted()}>
+      <p
+        className={classes.clear}
+        onClick={() => dispatch({ type: "CLEAR_COMPLETED" })}
+      >
         Clear Completed{" "}
       </p>
     </div>
