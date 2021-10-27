@@ -50,11 +50,11 @@ function TodoList(props) {
 
   //functions for conditional rendering of list
   const renderCompleted = () =>
-    completed.map((todo) => <Todo todo={todo} key={todo.id} />);
+    completed.map((todo) => <Todo todo={todo} key={todo._id} />);
   const renderActive = () =>
-    active.map((todo) => <Todo todo={todo} key={todo.id} />);
+    active.map((todo) => <Todo todo={todo} key={todo._id} />);
   const renderAll = () =>
-    todos.map((todo) => <Todo todo={todo} key={todo.id} />);
+    todos.map((todo) => <Todo todo={todo} key={todo._id} />);
 
   //store value for conditional color change
   const conditionalBackground = {

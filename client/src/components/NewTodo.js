@@ -10,13 +10,31 @@ function NewTodo(props) {
   const { dispatch } = useContext(TodoContext);
   const { isDark } = useContext(ThemeContext);
 
+  const postTodo = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/todos", {
+        headers: {
+          "Content-type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({ task: newTodo }),
+      });
+      const data = await response.json();
+      dispatch({ type: "ADD", payload: data });
+    } catch (error) {
+      console.log("Failed to add new todo");
+      console.log(error);
+    }
+  };
+
   const handleChange = (e) => {
     setNewTodo(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newTodo !== "") {
-      dispatch({ type: "ADD", task: newTodo });
+      console.log(newTodo);
+      postTodo();
     }
     setNewTodo("");
   };

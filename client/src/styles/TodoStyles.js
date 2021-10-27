@@ -8,6 +8,9 @@ const styles = {
     justifyContent: "space-between",
     opacity: "1",
     transition: "opacity .5s ease-in-out",
+    "&:hover": {
+      backgroundColor: "rgba(0,0,0,0.01)",
+    },
   },
   Todo__content: {
     width: "100%",

@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, createContext } from "react";
+import React, { useState, useReducer, useEffect, createContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export const TodoContext = createContext();
@@ -6,6 +6,10 @@ export const TodoContext = createContext();
 //create a reducer fuction
 const todoReducer = (state, action) => {
   switch (action.type) {
+    case "FETCH_SUCCESS":
+      return action.payload;
+    case "FETCH_ERROR":
+      return [];
     case "ADD":
       return [
         ...state,
@@ -25,9 +29,26 @@ const todoReducer = (state, action) => {
 };
 
 export function TodoProvider(props) {
+  let initialTodos = [];
   //fetch todos from local storage if there be any
-  const initialTodos = JSON.parse(localStorage.getItem("todos") || "[]");
+  // const initialTodos = JSON.parse(localStorage.getItem("todos") || "[]");
   const [todos, dispatch] = useReducer(todoReducer, initialTodos);
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/todos");
+        const data = await response.json();
+        dispatch({ type: "FETCH_SUCCESS", payload: data });
+        // setInitialTodos(data);
+        // return data;
+      } catch (ex) {
+        console.log("failed to fetch todos");
+        console.log(ex);
+      }
+    };
+    fetchTodos();
+  }, []);
 
   //save todos in local storage
   useEffect(() => {
