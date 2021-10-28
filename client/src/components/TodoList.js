@@ -1,15 +1,20 @@
 import React, { useState, useContext, useEffect } from "react";
-import Todo from "./Todo";
-import FilterBar from "./FilterBar";
-import { TodoContext } from "../contexts/TodosContext";
+// import { TodoContext } from "../contexts/TodosContext";
 import { ThemeContext } from "../contexts/ThemeContext";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCompleted } from "../redux/todoActions";
+import FilterBar from "./FilterBar";
+import Todo from "./Todo";
 import styles from "../styles/TodoListStyles";
 import { withStyles } from "@material-ui/styles";
 
 function TodoList(props) {
   const { classes } = props;
   const { isDark } = useContext(ThemeContext);
-  const { todos, dispatch } = useContext(TodoContext);
+  const todos = useSelector((state) => state.todos.todos);
+
+  const dispatch = useDispatch();
+
   const numUncompletedTodos = todos.filter((todo) => !todo.completed).length;
 
   //states to hold completed and active todos
@@ -80,7 +85,7 @@ function TodoList(props) {
           <p>{`${numUncompletedTodos} items left`}</p>
           <p
             onClick={() => {
-              dispatch({ type: "CLEAR_COMPLETED" });
+              dispatch(clearCompleted());
             }}
           >
             Clear Completed

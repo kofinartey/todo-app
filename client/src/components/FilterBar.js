@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { TodoContext } from "../contexts/TodosContext";
 import { ThemeContext } from "../contexts/ThemeContext";
 import styles from "../styles/FilterBarStyles";
@@ -7,7 +8,8 @@ import { withStyles } from "@material-ui/styles";
 function FilterBar(props) {
   const { classes, filterCompleted, filterActive, filterAll, filterStatus } =
     props;
-  const { todos, dispatch } = useContext(TodoContext);
+  const todos = useSelector((state) => state.todos.todos);
+  const dispatch = useDispatch();
   const { isDark } = useContext(ThemeContext);
   const numUncompletedTodos = todos.filter((todo) => !todo.completed).length;
 

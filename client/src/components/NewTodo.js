@@ -1,31 +1,17 @@
 import React, { useState, useContext } from "react";
-import { TodoContext } from "../contexts/TodosContext";
+import { useDispatch } from "react-redux";
+import { withStyles } from "@material-ui/styles";
+
+import { postTodo } from "../redux/todoActions";
+import { addTodo } from "../redux/todoActions";
 import { ThemeContext } from "../contexts/ThemeContext";
 import styles from "../styles/NewTodoStyles";
-import { withStyles } from "@material-ui/styles";
 
 function NewTodo(props) {
   const { classes } = props;
   const [newTodo, setNewTodo] = useState("");
-  const { dispatch } = useContext(TodoContext);
+  const dispatch = useDispatch();
   const { isDark } = useContext(ThemeContext);
-
-  const postTodo = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/todos", {
-        headers: {
-          "Content-type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({ task: newTodo }),
-      });
-      const data = await response.json();
-      dispatch({ type: "ADD", payload: data });
-    } catch (error) {
-      console.log("Failed to add new todo");
-      console.log(error);
-    }
-  };
 
   const handleChange = (e) => {
     setNewTodo(e.target.value);
@@ -33,8 +19,7 @@ function NewTodo(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newTodo !== "") {
-      console.log(newTodo);
-      postTodo();
+      dispatch(postTodo(newTodo));
     }
     setNewTodo("");
   };

@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect, createContext } from "react";
+import React, { useReducer, useEffect, createContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export const TodoContext = createContext();

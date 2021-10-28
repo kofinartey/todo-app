@@ -20,12 +20,12 @@ router.post("/", async (req, res) => {
   res.send(results);
 });
 
-//PUT
+//PATCH
 router.patch("/:id", async (req, res) => {
   const todo = await Todo.findById(req.params.id);
   if (!todo) return res.status(404).send("Requested todo not found");
   //update todo
-  todo.completed = req.body.completed;
+  todo.completed = !todo.completed;
   const result = await todo.save();
   res.send(result);
 });
@@ -34,6 +34,11 @@ router.patch("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const toDelete = await Todo.findByIdAndRemove(req.params.id);
   if (!toDelete) return res.status(404).send("Requested todo not found");
+  res.send(toDelete);
+});
+//delete all completed todos
+router.delete("/", async (req, res) => {
+  const toDelete = await Todo.deleteMany({ completed: true });
   res.send(toDelete);
 });
 

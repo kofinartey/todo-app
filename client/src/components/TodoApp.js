@@ -1,21 +1,28 @@
-import React, { useContext } from "react";
-import { TodoProvider } from "../contexts/TodosContext";
+//package imiports
+import React, { useEffect, useContext } from "react";
+import { useDispatch } from "react-redux";
+import { withStyles } from "@material-ui/styles";
+//my imports
 import { ThemeContext } from "../contexts/ThemeContext";
+import { fetchTodos } from "../redux/todoActions";
+
 import TodoList from "./TodoList";
 import NewTodo from "./NewTodo";
 import sun from "../images/icon-sun.svg";
 import moon from "../images/icon-moon.svg";
 import styles from "../styles/TodoAppStyles";
-import { withStyles } from "@material-ui/styles";
 
 function TodoApp(props) {
   const { classes } = props;
   const { isDark, setIsDark } = useContext(ThemeContext);
+  const dispatch = useDispatch();
 
   const changeTheme = () => {
     setIsDark(!isDark);
   };
-
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, []);
   return (
     <div
       className={classes.TodoApp}
@@ -31,10 +38,8 @@ function TodoApp(props) {
             <img src={moon} alt="Theme toggler" onClick={changeTheme} />
           )}
         </div>
-        <TodoProvider>
-          <NewTodo />
-          <TodoList />
-        </TodoProvider>
+        <NewTodo />
+        <TodoList />
       </div>
     </div>
   );
